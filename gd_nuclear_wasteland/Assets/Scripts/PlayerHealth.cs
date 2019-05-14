@@ -14,9 +14,11 @@ public class PlayerHealth : MonoBehaviour
 	private Vector3 healthScale;				// The local scale of the health bar initially (with full health).
 	private PlayerControl playerControl;		// Reference to the PlayerControl script.
 	private Animator anim;						// Reference to the Animator on the player
+    private Score score;
+    public Deathmenu thedeathscreen;
 
 
-	void Awake ()
+    void Awake ()
 	{
 		// Setting up references.
 		playerControl = GetComponent<PlayerControl>();
@@ -66,8 +68,12 @@ public class PlayerHealth : MonoBehaviour
 					// ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
 					GetComponentInChildren<Gun>().enabled = false;
 
-					// ... Trigger the 'Die' animation state
-					anim.SetTrigger("Die");
+                    GetComponentInChildren<Score>().enabled = false;
+
+                    thedeathscreen.gameObject.SetActive(true);
+
+                    // ... Trigger the 'Die' animation state
+                    anim.SetTrigger("Die");
 				}
 			}
 		}
