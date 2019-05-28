@@ -6,23 +6,31 @@ public class PlayerControl : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
+    public LayerMask groundLayer;
 
     private Rigidbody2D myRigidbody;
+    private bool grounded;
+    private Collider2D myCollider;
+
 
     // Start is called before the first frame update
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        moveSpeed = 3;
-        jumpForce = 4;
+        myCollider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        grounded = Physics2D.IsTouchingLayers(myCollider, groundLayer);
+
+        if (grounded == true)
         {
-            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
+            }
         }
 
         if (Input.GetKey(KeyCode.A))
