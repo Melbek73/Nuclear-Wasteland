@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D myRigidbody;
     private bool grounded;
     private Collider2D myCollider;
+    private Animator myAnimator;
 
 
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class PlayerControl : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
+        myAnimator= GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -36,11 +38,18 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             myRigidbody.velocity = new Vector2(-moveSpeed, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
         }
 
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
+        }
+
+        else
+        {
+            myAnimator.Play("PlayerStay");
         }
     }
 }
