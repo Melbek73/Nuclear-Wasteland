@@ -12,6 +12,8 @@ public class PlayerControl : MonoBehaviour
     private bool grounded;
     private Collider2D myCollider;
     private Animator myAnimator;
+    private Transform myTransform;
+    private static bool facingRight = true;
 
 
     // Start is called before the first frame update
@@ -26,6 +28,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         grounded = Physics2D.IsTouchingLayers(myCollider, groundLayer);
+
 
         if (grounded == true)
         {
@@ -51,5 +54,25 @@ public class PlayerControl : MonoBehaviour
         {
             myAnimator.Play("PlayerStay");
         }
+
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (mousePosition.x > transform.position.x && !facingRight)
+        {
+            Flip();
+        }
+        else if (mousePosition.x < transform.position.x && facingRight)
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

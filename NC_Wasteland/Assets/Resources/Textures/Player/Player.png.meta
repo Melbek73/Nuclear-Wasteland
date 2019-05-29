@@ -116,12 +116,12 @@ TextureImporter:
       name: Player_1
       rect:
         serializedVersion: 2
-        x: 591
-        y: 797
+        x: 590
+        y: 798
         width: 111
-        height: 106
+        height: 103
       alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0.509009, y: 0.5048544}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -841,6 +841,6 @@ TextureImporter:
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
-  userData: 636947309304406491
+  userData: 636947395722972232
   assetBundleName: 
   assetBundleVariant: 
