@@ -37,7 +37,7 @@ public class GunRotation : MonoBehaviour
 
         transform.eulerAngles = new Vector3(0, 0, bulletAngle);
 
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             bulletAngle = -Vector2.SignedAngle(direction, Vector2.left);
             Rigidbody2D bulletInstance = Instantiate(rocket, myPos, Quaternion.Euler(new Vector3(0, 0, bulletAngle))) as Rigidbody2D;
