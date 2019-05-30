@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     public LayerMask groundLayer;
+    public static List<string> SelectedItems = new List<string>();
 
     private Rigidbody2D myRigidbody;
     private bool grounded;
@@ -14,6 +15,8 @@ public class PlayerControl : MonoBehaviour
     private Animator myAnimator;
     private Transform myTransform;
     private static bool facingRight = true;
+    private string selecteditem;
+    public int randomFist;
 
 
     // Start is called before the first frame update
@@ -22,13 +25,14 @@ public class PlayerControl : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         myAnimator= GetComponent<Animator>();
+
+        SelectedItems.Add("fist");//für mehrere items
     }
 
     // Update is called once per frame
     void Update()
     {
         grounded = Physics2D.IsTouchingLayers(myCollider, groundLayer);
-
 
         if (grounded == true)
         {
@@ -54,14 +58,37 @@ public class PlayerControl : MonoBehaviour
         {
             myAnimator.Play("PlayerStay");
         }
+        
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            randomFist = Random.Range(0, 3);
+            if (randomFist == 0)
+            {
+                myAnimator.Play("FistAnimation");
+            }
+            else if (randomFist == 1)
+            {
+                myAnimator.Play("FistAnimation2");
+            }
+            else if (randomFist == 2)
+            {
+                myAnimator.Play("FistAnimation3");
+            }
+        }
 
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            selecteditem = SelectedItems[0];
+        }
+
+        
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (mousePosition.x > transform.position.x && !facingRight)
+        if (mousePosition.x > transform.position.x && facingRight)
         {
             Flip();
         }
-        else if (mousePosition.x < transform.position.x && facingRight)
+        else if (mousePosition.x < transform.position.x && !facingRight)
         {
             Flip();
         }
@@ -74,5 +101,6 @@ public class PlayerControl : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 }
