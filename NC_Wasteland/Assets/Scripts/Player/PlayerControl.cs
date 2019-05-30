@@ -7,16 +7,15 @@ public class PlayerControl : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     public LayerMask groundLayer;
-    public static bool facingRight = true;
-    public static List<string> SelectedItems = new List<string>();
+    public static bool facingRight;
 
     private Rigidbody2D myRigidbody;
     private bool grounded;
     private Collider2D myCollider;
     private Animator myAnimator;
-    private Transform myTransform;
-    private string selecteditem;
-    public int randomFist;
+
+    private int randomFist;
+
 
 
     // Start is called before the first frame update
@@ -25,14 +24,15 @@ public class PlayerControl : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         myAnimator= GetComponent<Animator>();
+        //PlayerSwitch.myPosition=new Vector2(transform.position.x, transform.position.y);
 
-        SelectedItems.Add("fist");//für mehrere items
     }
 
     // Update is called once per frame
     void Update()
     {
         grounded = Physics2D.IsTouchingLayers(myCollider, groundLayer);
+        PlayerSwitch.myPosition = new Vector2(transform.position.x, transform.position.y);
 
         if (grounded == true)
         {
@@ -76,12 +76,6 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            selecteditem = SelectedItems[0];
-        }
-
-        
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (mousePosition.x > transform.position.x && facingRight)
