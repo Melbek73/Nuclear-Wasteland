@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     public LayerMask groundLayer;
+    public static bool facingRight = true;
     public static List<string> SelectedItems = new List<string>();
 
     private Rigidbody2D myRigidbody;
@@ -14,7 +15,6 @@ public class PlayerControl : MonoBehaviour
     private Collider2D myCollider;
     private Animator myAnimator;
     private Transform myTransform;
-    private static bool facingRight = true;
     private string selecteditem;
     public int randomFist;
 
