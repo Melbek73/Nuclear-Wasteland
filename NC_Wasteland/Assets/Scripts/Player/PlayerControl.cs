@@ -40,24 +40,26 @@ public class PlayerControl : MonoBehaviour
             {
                 myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
             }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                myRigidbody.velocity = new Vector2(-moveSpeed, myRigidbody.velocity.y);
+                myAnimator.Play("PlayerAnimation");
+            }
+
+            else if (Input.GetKey(KeyCode.D))
+            {
+                myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
+                myAnimator.Play("PlayerAnimation");
+            }
+
+            else
+            {
+                myAnimator.Play("PlayerStay");
+            }
         }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            myRigidbody.velocity = new Vector2(-moveSpeed, myRigidbody.velocity.y);
-            myAnimator.Play("PlayerAnimation");
-        }
-
-        else if (Input.GetKey(KeyCode.D))
-        {
-            myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
-            myAnimator.Play("PlayerAnimation");
-        }
-
-        else
-        {
-            myAnimator.Play("PlayerStay");
-        }
+        
         
         if (Input.GetKey(KeyCode.Mouse0))
         {

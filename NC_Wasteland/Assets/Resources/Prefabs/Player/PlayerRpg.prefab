@@ -828,4 +828,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocket: {fileID: 4838414428091305303, guid: f81f14325f89a6044a20384fca97d7b9, type: 3}
-  speed: 20
+  speed: 5
