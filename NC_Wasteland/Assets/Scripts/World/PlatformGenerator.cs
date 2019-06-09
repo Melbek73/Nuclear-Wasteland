@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class PlatformGenerator : MonoBehaviour
 {
-    public GameObject lastPlatform;
+    public GameObject startPlatform;
     public Transform generationPoint;
-    public float distanceBetween;
+    public float jumpForce;
 
     private float platformWidth;
-    private GameObject prefabPlatform;
+    private Platform nextPlatform;
+    private Platform activePlatform;
+    private float y_line;
+    private int amountOfPlatforms;
 
     // Start is called before the first frame update
     void Start()
     {
-        prefabPlatform = (GameObject)Resources.Load("Prefabs/Worldgeneration/Level1/Level1_0", typeof(GameObject));
-        platformWidth = lastPlatform.GetComponent<BoxCollider2D>().size.x;
-        //Debug.Log("platform width:" + platformWidth);
-
-        transform.position = new Vector2(transform.position.x + platformWidth + distanceBetween, lastPlatform.transform.position.y);
-        Instantiate(lastPlatform, transform.position, transform.rotation);
+        amountOfPlatforms = getAmountOfPlatforms();
+        activePlatform = new Platform(startPlatform);
+        y_line = activePlatform.Position.y;
     }
 
     // Update is called once per frame
@@ -27,9 +27,46 @@ public class PlatformGenerator : MonoBehaviour
     {
         if (transform.position.x < generationPoint.position.x)
         {
-            transform.position = new Vector2(transform.position.x + platformWidth + distanceBetween, lastPlatform.transform.position.y);
-            lastPlatform.transform.position = transform.position;
-            Instantiate(prefabPlatform, transform.position, transform.rotation);
+            initNextPlatform();
+            // position of generation
+            transform.position = platformPosition(activePlatform, nextPlatform);
+            nextPlatform.Position = transform.position;
+            // set nextPlatform to activePlatform
+            activePlatform = nextPlatform;
+            Instantiate(activePlatform.prefabPlatform, transform.position, activePlatform.Rotation);
         }
+    }
+
+    private Vector2 platformPosition(Platform oldPlatform, Platform newPlatform)
+    {
+        float x = 0.0f;
+        float y = 0.0f;
+
+        // max y distance between old and new platform
+        y = y_line + newPlatform.height + Random.Range(0.0f, 1.0f);
+        do
+        {
+            y -= Random.Range(0.5f, 2.0f);
+        } while(y - oldPlatform.Position.y + oldPlatform.height > jumpForce);
+
+        // max x distance between old and new platform
+        x = oldPlatform.Position.x + newPlatform.width - 0.5f;
+        // coming soon...
+
+        return new Vector2(x, y);
+    }
+
+    private int getAmountOfPlatforms()
+    {
+        Object[] maps = Resources.LoadAll("Prefabs/Worldgeneration/Level1/");
+        int ret = maps.Length;
+        Resources.UnloadUnusedAssets();
+        return ret;
+    }
+
+    private void initNextPlatform()
+    {
+        string path = "Prefabs/Worldgeneration/Level1/Level1_" + Random.Range(0, amountOfPlatforms);
+        this.nextPlatform = new Platform((GameObject)Resources.Load(path, typeof(GameObject)));
     }
 }
