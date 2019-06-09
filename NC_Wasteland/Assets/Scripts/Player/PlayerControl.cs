@@ -26,6 +26,9 @@ public class PlayerControl : MonoBehaviour
         myAnimator= GetComponent<Animator>();
         //PlayerSwitch.myPosition=new Vector2(transform.position.x, transform.position.y);
 
+        // load globals
+        this.jumpForce = Globals.Player_JumpForce;
+        this.moveSpeed = Globals.Player_Velocity;
     }
 
     // Update is called once per frame
