@@ -5,18 +5,32 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     public GameObject objectToFollow;
-    public float speed = 2.0f;
+    public float interpolationSpeed = 2.0f;
+    public float cameraSpeed = 1.0f;
 
+    // For testing Camera follow the player
+    public bool followPlayer = false;
+
+    // Only for Debug
+    float nextActionTime = 0.0f;
+
+    public Bounds OrthographicBounds
+    {
+        get { return CameraExtensions.OrthographicBounds(this.GetComponent<Camera>()); }
+    }
 
     void Update()
     {
-        float interpolation = speed * Time.deltaTime;
-
+        float interpolation = interpolationSpeed * Time.deltaTime;
 
         Vector3 position = this.transform.position;
-        position.y = Mathf.Lerp(this.transform.position.y, objectToFollow.transform.position.y + 1, interpolation);
-        position.x = Mathf.Lerp(this.transform.position.x, objectToFollow.transform.position.x, interpolation);
+        position.y = Mathf.Lerp(this.transform.position.y, objectToFollow.transform.position.y + 0.25f, interpolation);
+        position.x = (followPlayer) ? objectToFollow.transform.position.x
+                                    : Time.deltaTime * cameraSpeed + position.x;
 
         this.transform.position = position;
+
+        // Debug
+        Globals.DebugAfterTime(ref nextActionTime, 2.0f, "Camera: OrthographicBounds Min.Y=" + OrthographicBounds.min.y + " Min.X=" + OrthographicBounds.min.x + " Max.Y=" + OrthographicBounds.max.y + " Max.X=" + OrthographicBounds.max.x);
     }
 }
