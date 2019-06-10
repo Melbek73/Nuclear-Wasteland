@@ -5,34 +5,44 @@ using UnityEngine;
 public class PlatformGenerator : MonoBehaviour
 {
     public GameObject startPlatform;
-    public Transform generationPoint;
+    public Camera mainCamera;
 
     private float platformWidth;
-    private Platform nextPlatform;
     private Platform activePlatform;
+    private Queue<GameObject> platformQueue = new Queue<GameObject>(); // for deleting not visible platforms
     private float y_line;
     private int amountOfPlatforms;
 
     // Start is called before the first frame update
     void Start()
     {
-        amountOfPlatforms = getAmountOfPlatforms();
-        activePlatform = new Platform(startPlatform);
-        y_line = Globals.Platform_YAxis;
+        amountOfPlatforms = getAmountOfPlatforms();     // amount of platforms per level
+        activePlatform = new Platform(startPlatform);   // load startPlatform
+        y_line = Globals.Platform_YAxis;                // y axis for platforms
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < generationPoint.position.x)
+        if (transform.position.x < mainCamera.OrthographicBounds().max.x)
         {
-            initNextPlatform();
+            Platform nextPlatform = initNextPlatform();
+
             // position of generation
             transform.position = platformPosition(activePlatform, nextPlatform);
             nextPlatform.Position = transform.position;
+
             // set nextPlatform to activePlatform
             activePlatform = nextPlatform;
-            Instantiate(activePlatform.prefabPlatform, transform.position, activePlatform.Rotation);
+
+            // init platform and add it to queue
+            platformQueue.Enqueue(Instantiate(nextPlatform.prefabPlatform, transform.position, nextPlatform.Rotation));
+        }
+
+        // Destroy platforms
+        if (platformQueue.Count > 15)
+        {
+            Destroy(platformQueue.Dequeue());
         }
     }
 
@@ -67,9 +77,9 @@ public class PlatformGenerator : MonoBehaviour
         return ret;
     }
 
-    private void initNextPlatform()
+    private Platform initNextPlatform()
     {
         string path = "Prefabs/Worldgeneration/Level1/Level1_" + Random.Range(0, amountOfPlatforms);
-        this.nextPlatform = new Platform((GameObject)Resources.Load(path, typeof(GameObject)));
+        return new Platform((GameObject)Resources.Load(path, typeof(GameObject)));
     }
 }

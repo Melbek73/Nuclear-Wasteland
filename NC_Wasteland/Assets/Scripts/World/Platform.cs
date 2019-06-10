@@ -6,7 +6,7 @@ public class Platform
 {
     public float height;
     public float width;
-    public Bounds boundaries;
+    private Bounds boundaries;
     public GameObject prefabPlatform;
     
     public Platform(GameObject prefabPlatform) {
