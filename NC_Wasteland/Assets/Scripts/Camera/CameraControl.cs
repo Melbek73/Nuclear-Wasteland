@@ -11,7 +11,18 @@ public class CameraControl : MonoBehaviour
     // For testing Camera follow the player
     public bool followPlayer = false;
 
-    
+    // Only for Debug
+    float nextActionTime = 0.0f;
+
+    public Bounds OrthographicBounds
+    {
+        get { return CameraExtensions.OrthographicBounds(this.GetComponent<Camera>()); }
+    }
+
+    void Start()
+    {
+        Debug.Log("Camera Bounds Max.X=" + this.OrthographicBounds.max.x);
+    }
 
     void Update()
     {
@@ -23,5 +34,8 @@ public class CameraControl : MonoBehaviour
                                     : Time.deltaTime * cameraSpeed + position.x;
 
         this.transform.position = position;
+
+        // Debug
+        Globals.DebugAfterTime(ref nextActionTime, 2.0f, "Camera: OrthographicBounds Min.Y=" + OrthographicBounds.min.y + " Min.X=" + OrthographicBounds.min.x + " Max.Y=" + OrthographicBounds.max.y + " Max.X=" + OrthographicBounds.max.x);
     }
 }
