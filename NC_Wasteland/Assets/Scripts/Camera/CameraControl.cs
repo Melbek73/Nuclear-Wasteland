@@ -19,11 +19,6 @@ public class CameraControl : MonoBehaviour
         get { return CameraExtensions.OrthographicBounds(this.GetComponent<Camera>()); }
     }
 
-    void Start()
-    {
-        Debug.Log("Camera Bounds Max.X=" + this.OrthographicBounds.max.x);
-    }
-
     void Update()
     {
         float interpolation = interpolationSpeed * Time.deltaTime;
