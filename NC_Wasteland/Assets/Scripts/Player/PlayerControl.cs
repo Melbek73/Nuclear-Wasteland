@@ -37,6 +37,23 @@ public class PlayerControl : MonoBehaviour
         grounded = Physics2D.IsTouchingLayers(myCollider, groundLayer);
         PlayerSwitch.myPosition = new Vector2(transform.position.x, transform.position.y);
 
+        if (Input.GetKey(KeyCode.A))
+        {
+            myRigidbody.velocity = new Vector2(-moveSpeed, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
+        }
+
+        else if (Input.GetKey(KeyCode.D))
+        {
+            myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
+        }
+
+        else
+        {
+            myAnimator.Play("PlayerStay");
+        }
+
         if (grounded == true)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -44,23 +61,9 @@ public class PlayerControl : MonoBehaviour
                 myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
             }
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                myRigidbody.velocity = new Vector2(-moveSpeed, myRigidbody.velocity.y);
-                myAnimator.Play("PlayerAnimation");
-            }
-
-            else if (Input.GetKey(KeyCode.D))
-            {
-                myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
-                myAnimator.Play("PlayerAnimation");
-            }
-
-            else
-            {
-                myAnimator.Play("PlayerStay");
-            }
+            
         }
+
 
         
         
