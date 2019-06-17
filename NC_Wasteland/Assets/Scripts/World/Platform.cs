@@ -12,7 +12,7 @@ public class Platform
     public Platform(GameObject prefabPlatform) {
         //this.x = prefabPlatform.GetComponentInChildren<Transform>().Find("pointRight").position.x;
         this.height = prefabPlatform.GetComponent<BoxCollider2D>().size.y;
-        this.width = prefabPlatform.GetComponent<BoxCollider2D>().size.x;
+        this.width = prefabPlatform.GetComponent<SpriteRenderer>().size.x;
         this.prefabPlatform = prefabPlatform;
     }
 

@@ -60,7 +60,7 @@ public class PlatformGenerator : MonoBehaviour
         } 
 
         // max x distance between old and new platform
-        x = oldPlatform.Position.x + newPlatform.width + Random.Range(-0.5f, 0);
+        x = oldPlatform.Position.x + newPlatform.width + Random.Range(-0.5f, -0.2f);
         if(Random.Range(0, 100) < holeProbability)
         {
             x += Random.Range(0, Globals.Player_Velocity);
