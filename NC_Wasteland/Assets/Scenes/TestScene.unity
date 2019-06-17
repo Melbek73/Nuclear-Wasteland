@@ -321,6 +321,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251993836}
   - component: {fileID: 1251993835}
+  - component: {fileID: 1251993837}
   m_Layer: 0
   m_Name: ted
   m_TagString: Untagged
@@ -390,6 +391,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1251993837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251993834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac3568d1b0310c48b47411d02f94026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278043768
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,6 +619,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Level1_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3875719621368646505, guid: 8bcde20cb9f1345468e6cf6a57f83f8e,
+        type: 3}
+      propertyPath: m_TagString
+      value: ground
       objectReference: {fileID: 0}
     - target: {fileID: 6790383045874005371, guid: 8bcde20cb9f1345468e6cf6a57f83f8e,
         type: 3}
