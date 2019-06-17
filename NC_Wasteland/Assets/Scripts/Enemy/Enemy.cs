@@ -12,36 +12,40 @@ public class Enemy : MonoBehaviour
     Rigidbody2D tedBody;
     Transform tedTransform;
 
-    private LayerMask groundLayer;
+    public LayerMask enemyMask;
 
     // Start is called before the first frame update
     void Start()
     {
         tedBody = this.GetComponent<Rigidbody2D>();
-        width = this.GetComponent<SpriteRenderer>().size.x;
+        width = this.GetComponent<SpriteRenderer>().bounds.extents.x;
         tedTransform = this.transform;
-        groundLayer.value = 8; // groundlayer has number 8
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 lineCastPos = tedTransform.position - tedTransform.right * width;
-        bool isGrounded = Physics2D.Linecast(lineCastPos, lineCastPos + Vector3.down, groundLayer);
-
-        if(!isGrounded)
+        Debug.DrawLine(lineCastPos, lineCastPos + Vector3.down);
+        bool isGrounded = Physics2D.Linecast(lineCastPos, lineCastPos + Vector3.down, enemyMask);
+        Debug.DrawLine(lineCastPos, lineCastPos - tedTransform.right * 0.02f);
+        bool isBlocked = Physics2D.Linecast(lineCastPos, lineCastPos - tedTransform.right, enemyMask);
+        Debug.Log("Enemy isGrounded=" + isGrounded);
+        if(!isGrounded || isBlocked)
         {
-
+            Vector3 currRot = tedTransform.eulerAngles;
+            currRot.y += 180;
+            tedTransform.eulerAngles = currRot;
         }
 
         Vector3 velocity = tedBody.velocity;
-        velocity.x = speed;
+        velocity.x = -tedTransform.right.x * speed;
         tedBody.velocity = velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer != groundLayer)
+        if(collision.gameObject.layer != enemyMask)
         {
             moveRight = !moveRight; // toggle direction
         }
