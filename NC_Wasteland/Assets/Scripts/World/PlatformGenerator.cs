@@ -37,6 +37,10 @@ public class PlatformGenerator : MonoBehaviour
 
             // init platform and add it to queue
             platformQueue.Enqueue(Instantiate(nextPlatform.prefabPlatform, transform.position, nextPlatform.Rotation));
+
+            // Enemy on platform
+            GameObject enemy = (GameObject)Resources.Load("Prefabs/Enemy/ted", typeof(GameObject));
+            Instantiate(enemy, transform.position + Vector3.up, enemy.transform.rotation);
         }
 
         // Destroy platforms

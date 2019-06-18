@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7214714280809206117}
   - component: {fileID: 6825532484524793906}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6129292412171163073}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SpriteMeshs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 3243686156488967715}
   - component: {fileID: 9091726826521810354}
   - component: {fileID: 4869457454618254862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player_LeftFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4567874717987228880}
   - component: {fileID: 7081220202643765268}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8959505915793869921}
   - component: {fileID: 6231682060070805358}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2816176414324439913}
   - component: {fileID: 269867643164787564}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 7762798273107493636}
   - component: {fileID: 6042803165104863681}
   - component: {fileID: 6582009880781441488}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerFist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,9 +449,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
-  myFist: {fileID: 5797328214071397885, guid: 1371b70d9ad70c84a809acf1f7bb1cc6, type: 3}
-  myRpg: {fileID: 7408899831358878172, guid: ef659726ebe653f459bad8b2439923cc, type: 3}
-  selecteditem: 
 --- !u!1 &6039283874731522165
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +460,7 @@ GameObject:
   - component: {fileID: 7659583625709258156}
   - component: {fileID: 2083822589131203618}
   - component: {fileID: 4046498689523129938}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,7 +566,7 @@ GameObject:
   - component: {fileID: 2434035887757814833}
   - component: {fileID: 939318131767268925}
   - component: {fileID: 3259054715462727565}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player_RightFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,7 +668,7 @@ GameObject:
   - component: {fileID: 421407170013558655}
   - component: {fileID: 2281639443508273902}
   - component: {fileID: 8925556195475729434}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player_RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6892662585518478895}
   - component: {fileID: 2947366339945195921}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1477849997237989214}
   - component: {fileID: 6535130269456642351}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +864,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5231704155170290624}
   - component: {fileID: 5718404979669395646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -915,7 +912,7 @@ GameObject:
   - component: {fileID: 1233795931105573023}
   - component: {fileID: 6176330560796207933}
   - component: {fileID: 596599577926092784}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player_LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
