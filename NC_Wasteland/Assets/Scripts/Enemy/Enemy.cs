@@ -43,9 +43,10 @@ public class Enemy : MonoBehaviour
 
     void hurt()
     {
-        health -= 50;
+        health -= 100;
         if (health <= 0)
         {
+            //ToDo add enemy deathsound!!!
             Destroy(this.gameObject);
         }
     }
@@ -64,21 +65,28 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         enemyMove();
-        Globals.DebugAfterTime(ref actionTime, 2, "Enemy Health=" + health);
-        if(health < 0)
-        {
-            Debug.Log("Enemy: ICH BIN TOOOOOOD");
-        }
+        Vector3 lineCastPos = tedTransform.up * height + tedTransform.position - tedTransform.right * width;
+        Debug.DrawLine(lineCastPos, lineCastPos + tedTransform.right * width * 2);
+
+
     }
 
-   
-    
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerControl player = collision.collider.GetComponent<PlayerControl>();
         if(player != null)
         {
-            hurt();
+            Vector3 lineCastPos = tedTransform.up * height + tedTransform.position - tedTransform.right * width;
+            Debug.DrawLine(lineCastPos, lineCastPos + tedTransform.right * width * 2);
+            bool isPlayerJumpedOnEnemy = Physics2D.Linecast(lineCastPos, lineCastPos + tedTransform.right * width * 2, enemyMask);
+            if(isPlayerJumpedOnEnemy)
+            {
+                hurt();
+                player.myRigidbody.velocity = new Vector2(player.myRigidbody.velocity.x, player.jumpForce);
+                Debug.Log("Enemy got jump damage by player");
+            }
         }
     }
 }

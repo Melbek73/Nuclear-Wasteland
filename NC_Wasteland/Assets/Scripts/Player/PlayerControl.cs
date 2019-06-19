@@ -8,8 +8,8 @@ public class PlayerControl : MonoBehaviour
     public float jumpForce;
     public LayerMask groundLayer;
     public static bool facingRight;
+    public Rigidbody2D myRigidbody;
 
-    private Rigidbody2D myRigidbody;
     private bool grounded;
     private Collider2D myCollider;
     private Animator myAnimator;
