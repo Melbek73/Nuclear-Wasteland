@@ -13,12 +13,17 @@ public class PlatformGenerator : MonoBehaviour
     private float y_line;
     private int amountOfPlatforms;
 
+    // Enemy
+    GameObject enemy;
+
     // Start is called before the first frame update
     void Start()
     {
         amountOfPlatforms = getAmountOfPlatforms();     // amount of platforms per level
         activePlatform = new Platform(startPlatform);   // load startPlatform
         y_line = Globals.Platform_YAxis;                // y axis for platforms
+
+        enemy = (GameObject)Resources.Load("Prefabs/Enemy/ted", typeof(GameObject));
     }
 
     // Update is called once per frame
@@ -39,8 +44,11 @@ public class PlatformGenerator : MonoBehaviour
             platformQueue.Enqueue(Instantiate(nextPlatform.prefabPlatform, transform.position, nextPlatform.Rotation));
 
             // Enemy on platform
-            GameObject enemy = (GameObject)Resources.Load("Prefabs/Enemy/ted", typeof(GameObject));
-            Instantiate(enemy, transform.position + Vector3.up, enemy.transform.rotation);
+            float enemySpawnProbability = 25.0f; // percent of enemy spawn
+            if(Random.Range(0, 100) < enemySpawnProbability)
+            {
+                Instantiate(enemy, transform.position + Vector3.up, enemy.transform.rotation);
+            }
         }
 
         // Destroy platforms

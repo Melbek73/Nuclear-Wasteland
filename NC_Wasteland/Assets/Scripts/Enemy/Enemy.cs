@@ -76,6 +76,7 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerControl player = collision.collider.GetComponent<PlayerControl>();
+        string rocket = collision.collider.name;
         if(player != null)
         {
             Vector3 lineCastPos = tedTransform.up * height + tedTransform.position - tedTransform.right * width;
@@ -87,6 +88,12 @@ public class Enemy : MonoBehaviour
                 player.myRigidbody.velocity = new Vector2(player.myRigidbody.velocity.x, player.jumpForce);
                 Debug.Log("Enemy got jump damage by player");
             }
+        }
+
+        if(rocket == "Rocket")
+        {
+            hurt();
+            Debug.Log("Enemy got damage by rocket");
         }
     }
 }
