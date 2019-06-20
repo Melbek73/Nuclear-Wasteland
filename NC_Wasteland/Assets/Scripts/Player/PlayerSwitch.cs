@@ -28,7 +28,6 @@ public class PlayerSwitch : MonoBehaviour
         {
             if (GameObject.Find("PlayerRpg") || GameObject.Find("PlayerRpg(Clone)"))
             {
-                
                 selecteditem = SelectedItems[0];
                 Destroy(GameObject.Find("PlayerRpg"));
                 Destroy(GameObject.Find("PlayerRpg(Clone)"));
