@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
+    public int health;
     public LayerMask groundLayer;
     public static bool facingRight;
     public Rigidbody2D myRigidbody;
@@ -29,6 +31,7 @@ public class PlayerControl : MonoBehaviour
         // load globals
         this.jumpForce = Globals.Player_JumpForce;
         this.moveSpeed = Globals.Player_Velocity;
+        this.health = Globals.Player_Health;
     }
 
     // Update is called once per frame
@@ -104,5 +107,29 @@ public class PlayerControl : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Enemy enemy = collision.collider.GetComponent<Enemy>();
+        if(enemy != null)
+        {
+            if(enemy.isPlayerJumpedOnEnemy())
+            {
+                Debug.Log("Player jumped on enemy");
+            } else
+            {
+                hurt();
+            }
+        }
+    }
+
+    private void hurt()
+    {
+        health--;
+        if(health < 0)
+        {
+            SceneManager.LoadScene("TestScene");
+        }
     }
 }

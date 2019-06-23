@@ -28,6 +28,7 @@ public static class Globals
     // Player
     public const float Player_JumpForce = 6;
     public const float Player_Velocity = 3;
+    public const int Player_Health = 3;
 
     // World
 

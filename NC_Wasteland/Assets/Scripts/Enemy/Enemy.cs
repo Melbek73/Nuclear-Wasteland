@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
         tedBody.velocity = velocity;
     }
 
-    void hurt()
+    private void hurt()
     {
         health -= 100;
         if (health <= 0)
@@ -65,13 +65,15 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         enemyMove();
-        Vector3 lineCastPos = tedTransform.up * height + tedTransform.position - tedTransform.right * width;
-        Debug.DrawLine(lineCastPos, lineCastPos + tedTransform.right * width * 2);
-
-
+        Vector3 lineCastPos = tedTransform.up * height + tedTransform.position - tedTransform.right * width / 6;
+        Debug.DrawLine(lineCastPos, lineCastPos + tedTransform.right * width * 0.45f * 2);
     }
 
-
+    public bool isPlayerJumpedOnEnemy()
+    {
+        Vector3 lineCastPos = tedTransform.up * height + tedTransform.position - tedTransform.right * width / 6;
+        return Physics2D.Linecast(lineCastPos, lineCastPos + tedTransform.right * width * 0.45f * 2, enemyMask);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -79,10 +81,8 @@ public class Enemy : MonoBehaviour
         string rocket = collision.collider.name;
         if(player != null)
         {
-            Vector3 lineCastPos = tedTransform.up * height + tedTransform.position - tedTransform.right * width;
-            Debug.DrawLine(lineCastPos, lineCastPos + tedTransform.right * width * 2);
-            bool isPlayerJumpedOnEnemy = Physics2D.Linecast(lineCastPos, lineCastPos + tedTransform.right * width * 2, enemyMask);
-            if(isPlayerJumpedOnEnemy)
+            
+            if(isPlayerJumpedOnEnemy())
             {
                 hurt();
                 player.myRigidbody.velocity = new Vector2(player.myRigidbody.velocity.x, player.jumpForce);
