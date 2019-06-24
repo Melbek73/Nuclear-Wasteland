@@ -44,7 +44,7 @@ public class PlatformGenerator : MonoBehaviour
             platformQueue.Enqueue(Instantiate(nextPlatform.prefabPlatform, transform.position, nextPlatform.Rotation));
 
             // Enemy on platform
-            float enemySpawnProbability = 100.0f;//25.0f; // percent of enemy spawn
+            float enemySpawnProbability = 25.0f;//25.0f; // percent of enemy spawn
             if(Random.Range(0, 100) < enemySpawnProbability)
             {
                 Instantiate(enemy, transform.position + Vector3.up, enemy.transform.rotation);

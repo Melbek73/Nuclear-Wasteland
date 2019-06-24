@@ -32,5 +32,14 @@ public class CameraControl : MonoBehaviour
 
         // Debug
         Globals.DebugAfterTime(ref nextActionTime, 2.0f, "Camera: OrthographicBounds Min.Y=" + OrthographicBounds.min.y + " Min.X=" + OrthographicBounds.min.x + " Max.Y=" + OrthographicBounds.max.y + " Max.X=" + OrthographicBounds.max.x);
+
+
+        if(OrthographicBounds.min.x > objectToFollow.transform.position.x)
+        {
+            Debug.Log("Spieler außerhalb der Kamera");
+            Vector2 playerPos = objectToFollow.transform.position;
+            playerPos.x = OrthographicBounds.min.x;
+            objectToFollow.transform.position = playerPos;
+        }
     }
 }
