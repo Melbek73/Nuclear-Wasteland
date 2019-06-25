@@ -7,6 +7,8 @@ public class GunRotation : MonoBehaviour
     public Rigidbody2D rocket;              // Prefab of the rocket.
     public float speed = 20f;				// The speed the rocket will fire at.
     public static float bulletAngle = 0.0f;
+    public AudioClip rocketClip;
+    public AudioSource rocketSource;
 
     private PlayerControl playerCtrl;       // Reference to the PlayerControl script.
     private Animator anim;
@@ -15,6 +17,7 @@ public class GunRotation : MonoBehaviour
     {
         anim = transform.root.gameObject.GetComponent<Animator>();
         playerCtrl = transform.root.GetComponent<PlayerControl>();
+        rocketSource.clip = rocketClip;
     }
 
     // Update is called once per frame
@@ -39,6 +42,8 @@ public class GunRotation : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            rocketSource.Play();
+
             bulletAngle = -Vector2.SignedAngle(direction, Vector2.left);
             Rigidbody2D bulletInstance = Instantiate(rocket, myPos, Quaternion.Euler(new Vector3(0, 0, bulletAngle))) as Rigidbody2D;
             bulletInstance.velocity = -direction * speed;
