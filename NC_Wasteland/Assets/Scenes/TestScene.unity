@@ -217,8 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e6b619d0c672a4785fdad4e17308db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToFollow: {fileID: 5481719547748623441, guid: 135922fc716590548be166f3532acddb,
-    type: 3}
+  objectToFollow: {fileID: 1279293530}
   interpolationSpeed: 2
   cameraSpeed: 1
   followPlayer: 0
@@ -693,6 +692,12 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1279293530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5481719548154080754, guid: 135922fc716590548be166f3532acddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 712858853}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1363799586
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class PlayerSwitch : MonoBehaviour
 {
     private string selecteditem;
     public static List<string> SelectedItems = new List<string>();
-    public static bool isFist;
+    public static bool isFist=true;
 
     public GameObject myFist;
     public GameObject myRpg;

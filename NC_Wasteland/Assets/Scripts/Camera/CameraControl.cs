@@ -21,6 +21,17 @@ public class CameraControl : MonoBehaviour
 
     void Update()
     {
+        if (GameObject.Find("PlayerRpg(Clone)"))
+        {
+            objectToFollow = GameObject.Find("PlayerRpg");
+            objectToFollow = GameObject.Find("PlayerRpg(Clone)");
+        }
+        else if( GameObject.Find("PlayerFist(Clone)"))
+        {
+            objectToFollow = GameObject.Find("PlayerFist");
+            objectToFollow = GameObject.Find("PlayerFist(Clone)");
+        }
+
         float interpolation = interpolationSpeed * Time.deltaTime;
 
         Vector3 position = this.transform.position;
@@ -33,12 +44,18 @@ public class CameraControl : MonoBehaviour
         // Debug
         Globals.DebugAfterTime(ref nextActionTime, 2.0f, "Camera: OrthographicBounds Min.Y=" + OrthographicBounds.min.y + " Min.X=" + OrthographicBounds.min.x + " Max.Y=" + OrthographicBounds.max.y + " Max.X=" + OrthographicBounds.max.x);
 
-
         if(OrthographicBounds.min.x > objectToFollow.transform.position.x)
         {
             Debug.Log("Spieler außerhalb der Kamera");
             Vector2 playerPos = objectToFollow.transform.position;
             playerPos.x = OrthographicBounds.min.x;
+            objectToFollow.transform.position = playerPos;
+        }
+        else if (OrthographicBounds.max.x < objectToFollow.transform.position.x)
+        {
+            Debug.Log("Spieler außerhalb der Kamera");
+            Vector2 playerPos = objectToFollow.transform.position;
+            playerPos.x = OrthographicBounds.max.x;
             objectToFollow.transform.position = playerPos;
         }
     }
