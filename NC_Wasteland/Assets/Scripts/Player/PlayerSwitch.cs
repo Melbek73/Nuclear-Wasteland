@@ -6,6 +6,7 @@ public class PlayerSwitch : MonoBehaviour
 {
     private string selecteditem;
     public static List<string> SelectedItems = new List<string>();
+    public static bool isFist;
 
     public GameObject myFist;
     public GameObject myRpg;
@@ -34,6 +35,7 @@ public class PlayerSwitch : MonoBehaviour
                 Instantiate(myFist, myPosition, Quaternion.identity);
                 PlayerControl.facingRight = true;
             }
+            isFist = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -46,6 +48,7 @@ public class PlayerSwitch : MonoBehaviour
                 Instantiate(myRpg, myPosition, Quaternion.identity);
                 PlayerControl.facingRight = true;
             }
+            isFist = false;
         }
     }
 }

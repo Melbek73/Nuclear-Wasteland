@@ -450,7 +450,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5481719547748623441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.7849665, y: -0.35313782, z: 0.19942446}
+  m_LocalPosition: {x: 3.9634438, y: -0.35313782, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 5481719548154080755}
@@ -636,6 +636,7 @@ GameObject:
   - component: {fileID: 5481719548154080758}
   - component: {fileID: 5481719548154080753}
   - component: {fileID: 5481719548154080752}
+  - component: {fileID: 837161132838868182}
   m_Layer: 9
   m_Name: PlayerFist
   m_TagString: Untagged
@@ -744,6 +745,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   myRigidbody: {fileID: 0}
+--- !u!114 &837161132838868182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5481719548154080754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b729c35cdfa13d45a1952fd14b5cc2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   meleeClip1: {fileID: 8300000, guid: 76a35b89668068f4ea47c63d5529eb37, type: 3}
   meleeClip2: {fileID: 8300000, guid: 245f75c5677625f43a252f3e54ba8012, type: 3}
   meleeClip3: {fileID: 8300000, guid: c9c63754d827b2a4585786b8a808fe3f, type: 3}

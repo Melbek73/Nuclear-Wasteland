@@ -217,7 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e6b619d0c672a4785fdad4e17308db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToFollow: {fileID: 2119686171}
+  objectToFollow: {fileID: 5481719547748623441, guid: 135922fc716590548be166f3532acddb,
+    type: 3}
   interpolationSpeed: 2
   cameraSpeed: 1
   followPlayer: 0
@@ -706,7 +707,7 @@ GameObject:
   m_Layer: 0
   m_Name: Worldgeneration
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -835,12 +836,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &2119686171 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5481719548154080754, guid: 135922fc716590548be166f3532acddb,
-    type: 3}
-  m_PrefabInstance: {fileID: 712858853}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2135744832
 GameObject:
   m_ObjectHideFlags: 0

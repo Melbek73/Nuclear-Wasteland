@@ -11,10 +11,7 @@ public class PlayerControl : MonoBehaviour
     public LayerMask groundLayer;
     public static bool facingRight;
     public Rigidbody2D myRigidbody;
-    public AudioClip meleeClip1;
-    public AudioClip meleeClip2;
-    public AudioClip meleeClip3;
-    public AudioSource meleeSource;
+
 
     private bool grounded;
     private Collider2D myCollider;
@@ -67,14 +64,12 @@ public class PlayerControl : MonoBehaviour
             {
                 myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
             }
-
-            
         }
 
 
         
         
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0)&&PlayerSwitch.isFist==true)
         {
             randomFist = Random.Range(0, 3);
             if (randomFist == 0)
@@ -135,21 +130,5 @@ public class PlayerControl : MonoBehaviour
         {
             SceneManager.LoadScene("TestScene");
         }
-    }
-
-    private void melleSound1()
-    {
-        meleeSource.clip = meleeClip1;
-        meleeSource.Play();
-    }
-    private void melleSound2()
-    {
-        meleeSource.clip = meleeClip2;
-        meleeSource.Play();
-    }
-    private void melleSound3()
-    {
-        meleeSource.clip = meleeClip3;
-        meleeSource.Play();
     }
 }

@@ -678,6 +678,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   myRigidbody: {fileID: 0}
+  meleeClip1: {fileID: 0}
+  meleeClip2: {fileID: 0}
+  meleeClip3: {fileID: 0}
+  meleeSource: {fileID: 0}
 --- !u!1 &2089229575756566088
 GameObject:
   m_ObjectHideFlags: 0
