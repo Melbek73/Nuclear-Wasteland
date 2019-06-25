@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlatformGenerator : MonoBehaviour
@@ -16,6 +17,11 @@ public class PlatformGenerator : MonoBehaviour
     // Enemy
     GameObject enemy;
 
+    // Score
+    public TextMeshProUGUI scoreText;
+    int score;
+    float nextActionTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +30,15 @@ public class PlatformGenerator : MonoBehaviour
         y_line = Globals.Platform_YAxis;                // y axis for platforms
 
         enemy = (GameObject)Resources.Load("Prefabs/Enemy/ted", typeof(GameObject));
+        score = 0;
+        nextActionTime = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        updateScore();
+        Debug.Log("score=" + score);
         if (transform.position.x < mainCamera.OrthographicBounds().max.x)
         {
             Platform nextPlatform = initNextPlatform();
@@ -55,6 +65,21 @@ public class PlatformGenerator : MonoBehaviour
         if (platformQueue.Count > 15)
         {
             Destroy(platformQueue.Dequeue());
+        }
+    }
+
+    public void updateScore()
+    {
+        nextActionTime += Time.deltaTime;
+
+        // All 2 seconds show camera bounds
+        if (nextActionTime >= 1)
+        {
+            // reset
+            nextActionTime = nextActionTime % 1;
+
+            score++;
+            scoreText.text = "score:" + score;
         }
     }
 
