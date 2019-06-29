@@ -9,6 +9,8 @@ public class PlayerFistSound : MonoBehaviour
     public AudioClip meleeClip3;
     public AudioSource meleeSource;
 
+    public static bool isFist = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,8 @@ public class PlayerFistSound : MonoBehaviour
     {
         if (PlayerSwitch.isFist == true)
         {
+            isFist = true;
+
             meleeSource.clip = meleeClip1;
             meleeSource.Play();
         }
@@ -34,6 +38,8 @@ public class PlayerFistSound : MonoBehaviour
     {
         if (PlayerSwitch.isFist == true)
         {
+            isFist = true;
+
             meleeSource.clip = meleeClip2;
             meleeSource.Play();
         }
@@ -42,8 +48,14 @@ public class PlayerFistSound : MonoBehaviour
     {
         if (PlayerSwitch.isFist == true)
         {
+            isFist = true;
+
             meleeSource.clip = meleeClip3;
             meleeSource.Play();
         }
+    }
+    private void fistEnd()
+    {
+        isFist = false;
     }
 }

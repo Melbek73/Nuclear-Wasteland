@@ -9,9 +9,11 @@ public class GunRotation : MonoBehaviour
     public static float bulletAngle = 0.0f;
     public AudioClip rocketClip;
     public AudioSource rocketSource;
+    public static bool canShoot;
 
     private PlayerControl playerCtrl;       // Reference to the PlayerControl script.
     private Animator anim;
+    private static float rocketTime = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +44,31 @@ public class GunRotation : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            rocketSource.Play();
+            if (canShoot)
+            {
+                rocketSource.Play();
 
-            bulletAngle = -Vector2.SignedAngle(direction, Vector2.left);
-            Rigidbody2D bulletInstance = Instantiate(rocket, myPos, Quaternion.Euler(new Vector3(0, 0, bulletAngle))) as Rigidbody2D;
-            bulletInstance.velocity = -direction * speed;
+                bulletAngle = -Vector2.SignedAngle(direction, Vector2.left);
+                Rigidbody2D bulletInstance = Instantiate(rocket, myPos, Quaternion.Euler(new Vector3(0, 0, bulletAngle))) as Rigidbody2D;
+                bulletInstance.velocity = -direction * speed;
+
+                rocketTime = 0;
+            }
         }
+
+        rocketTime += Time.deltaTime;
+
+        if (rocketTime > 2)
+        {
+            canShoot = true;
+        }
+        else
+        {
+            canShoot = false;
+        }
+
+
     }
+
+
 }

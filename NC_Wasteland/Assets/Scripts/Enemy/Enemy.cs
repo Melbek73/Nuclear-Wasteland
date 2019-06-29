@@ -96,5 +96,6 @@ public class Enemy : MonoBehaviour
             hurt();
             Debug.Log("Enemy got damage by rocket");
         }
+
     }
 }
