@@ -11,7 +11,8 @@ public class PlayerSwitch : MonoBehaviour
     public GameObject myFist;
     public GameObject myRpg;
     public static Vector2 myPosition;
-    public Vector2 pos;
+    public Rigidbody2D myRigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,16 +25,34 @@ public class PlayerSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pos = myPosition;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (GameObject.Find("PlayerRpg") || GameObject.Find("PlayerRpg(Clone)"))
             {
+                GameObject player;
                 selecteditem = SelectedItems[0];
-                Destroy(GameObject.Find("PlayerRpg"));
-                Destroy(GameObject.Find("PlayerRpg(Clone)"));
-                Instantiate(myFist, myPosition, Quaternion.identity);
-                PlayerControl.facingRight = true;
+
+                if (GameObject.Find("PlayerRpg"))
+                {
+                    player = GameObject.Find("PlayerRpg");
+                }
+                else
+                {
+                    player = GameObject.Find("PlayerRpg(Clone)");
+                }
+
+                myRigidbody = player.GetComponent<Rigidbody2D>();
+                myRigidbody.velocity = player.GetComponent<Rigidbody2D>().velocity;
+
+                Destroy(player);
+
+                GameObject newPlayer = Instantiate(myFist, myPosition, Quaternion.identity);
+                newPlayer.GetComponent<Rigidbody2D>().velocity=myRigidbody.velocity;
+
+                if (!PlayerControl.facingRight)
+                {
+                    newPlayer.transform.localScale = new Vector3(-1, 1, 1);
+                }
             }
             isFist = true;
         }
@@ -42,11 +61,30 @@ public class PlayerSwitch : MonoBehaviour
         {
             if (GameObject.Find("PlayerFist") || GameObject.Find("PlayerFist(Clone)"))
             {
+                GameObject player;
                 selecteditem = SelectedItems[1];
-                Destroy(GameObject.Find("PlayerFist"));
-                Destroy(GameObject.Find("PlayerFist(Clone)"));
-                Instantiate(myRpg, myPosition, Quaternion.identity);
-                PlayerControl.facingRight = true;
+
+                if (GameObject.Find("PlayerFist"))
+                {
+                    player = GameObject.Find("PlayerFist");
+                }
+                else
+                {
+                    player = GameObject.Find("PlayerFist(Clone)");
+                }
+
+                myRigidbody = player.GetComponent<Rigidbody2D>();
+                myRigidbody.velocity = player.GetComponent<Rigidbody2D>().velocity;
+
+                Destroy(player);
+
+                GameObject newPlayer = Instantiate(myRpg, myPosition, Quaternion.identity);
+                newPlayer.GetComponent<Rigidbody2D>().velocity = myRigidbody.velocity;
+
+                if (!PlayerControl.facingRight)
+                {
+                    newPlayer.transform.localScale = new Vector3(-1, 1, 1);
+                }
             }
             isFist = false;
         }

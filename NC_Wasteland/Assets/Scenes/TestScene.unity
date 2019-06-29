@@ -220,7 +220,7 @@ MonoBehaviour:
   objectToFollow: {fileID: 1279293530}
   interpolationSpeed: 2
   cameraSpeed: 1
-  followPlayer: 1
+  followPlayer: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
