@@ -58,5 +58,6 @@ public class CameraControl : MonoBehaviour
             playerPos.x = OrthographicBounds.max.x;
             objectToFollow.transform.position = playerPos;
         }
+
     }
 }

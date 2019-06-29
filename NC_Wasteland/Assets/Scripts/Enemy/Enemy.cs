@@ -79,7 +79,8 @@ public class Enemy : MonoBehaviour
     {
         PlayerControl player = collision.collider.GetComponent<PlayerControl>();
         string rocket = collision.collider.name;
-        if(player != null)
+        Debug.Log("Rocket: "+rocket);
+        if (player != null)
         {
             
             if(isPlayerJumpedOnEnemy())
@@ -90,7 +91,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if(rocket == "Rocket")
+        if(rocket == "Rocket(Clone)")
         {
             hurt();
             Debug.Log("Enemy got damage by rocket");

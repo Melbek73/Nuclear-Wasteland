@@ -96,6 +96,12 @@ public class PlayerControl : MonoBehaviour
         {
             Flip();
         }
+
+
+        if (transform.position.y < -20)
+        {
+            SceneManager.LoadScene("TestScene");
+        }
     }
 
     private void Flip()
