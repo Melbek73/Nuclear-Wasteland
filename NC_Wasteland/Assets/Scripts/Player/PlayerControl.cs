@@ -71,6 +71,7 @@ public class PlayerControl : MonoBehaviour
         
         if (Input.GetKey(KeyCode.Mouse0)&&PlayerSwitch.isFist==true)
         {
+            PlayerFistSound.isFist = false;
             randomFist = Random.Range(0, 3);
             if (randomFist == 0)
             {
