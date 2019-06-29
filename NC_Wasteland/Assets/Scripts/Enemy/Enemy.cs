@@ -78,8 +78,8 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerControl player = collision.collider.GetComponent<PlayerControl>();
-        string rocket = collision.collider.name;
-        Debug.Log("Rocket: "+rocket);
+        string weapon = collision.collider.name;
+        Debug.Log("Rocket: "+ weapon);
         if (player != null)
         {
             
@@ -91,11 +91,15 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if(rocket == "Rocket(Clone)")
+        if(weapon == "Rocket(Clone)")
         {
             hurt();
             Debug.Log("Enemy got damage by rocket");
         }
 
+        if ((weapon == "Player_RightHand"&& PlayerFistSound.isFist)|| (weapon == "Player_LeftHand" && PlayerFistSound.isFist))
+        {
+            hurt();
+        }
     }
 }
