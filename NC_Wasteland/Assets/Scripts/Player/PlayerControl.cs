@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -11,14 +12,15 @@ public class PlayerControl : MonoBehaviour
     public LayerMask groundLayer;
     public static bool facingRight;
     public Rigidbody2D myRigidbody;
-
+    public TextMeshProUGUI healthText;
 
     private bool grounded;
     private Collider2D myCollider;
     private Animator myAnimator;
-
     private int randomFist;
 
+    private float hitTime = 1;
+    private bool hit = false;
 
 
     // Start is called before the first frame update
@@ -66,9 +68,6 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-
-        
-        
         if (Input.GetKey(KeyCode.Mouse0)&&PlayerSwitch.isFist==true)
         {
             PlayerFistSound.isFist = false;
@@ -98,11 +97,12 @@ public class PlayerControl : MonoBehaviour
             Flip();
         }
 
-
         if (transform.position.y < -20)
         {
             SceneManager.LoadScene("TestScene");
         }
+
+        hurtTime();
     }
 
     private void Flip()
@@ -132,10 +132,26 @@ public class PlayerControl : MonoBehaviour
 
     private void hurt()
     {
-        health--;
-        if(health < 0)
+        hit = true;
+        if (hitTime >= 1)
+        {
+            health -= 30;
+            healthText.text =health.ToString();
+            hit = false;
+            hitTime = 0;
+        }
+ 
+        if (health < 0)
         {
             SceneManager.LoadScene("TestScene");
+        }
+    }
+
+    private void hurtTime()
+    {
+        if (hit)
+        {
+            hitTime += Time.deltaTime;
         }
     }
 }
