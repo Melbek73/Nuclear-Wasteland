@@ -76,7 +76,7 @@ public class PlayerControl : MonoBehaviour
             myRigidbody.velocity = new Vector2(moveSpeed / 1.5f, myRigidbody.velocity.y);
             myAnimator.Play("PlayerAnimation");
         }
-        else if (!grounded)
+        else 
         {
             x = myRigidbody.velocity.x;
             x=x / 1.05f;
