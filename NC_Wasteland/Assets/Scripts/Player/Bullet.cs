@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public GameObject player;
+    public GameObject explosion;
     private Collider2D myCollider;
     
     // Start is called before the first frame update
@@ -17,8 +18,6 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
 
         /*if (GameObject.Find("PlayerRpg") || GameObject.Find("PlayerRpg(Clone)"))
         {
@@ -38,6 +37,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+        explosion.transform.position = transform.position;
+        Instantiate(explosion);
     }
-
 }

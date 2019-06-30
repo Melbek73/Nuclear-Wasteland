@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     float actionTime = 0;
 
     public LayerMask enemyMask;
+    public GameObject explosion;
 
     private void enemyMove()
     {

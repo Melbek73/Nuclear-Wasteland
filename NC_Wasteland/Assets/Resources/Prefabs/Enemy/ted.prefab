@@ -97,6 +97,8 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 823
+  explosion: {fileID: 1094421576702244365, guid: a61d9cc015ecb1c4d889b6bf1da35f24,
+    type: 3}
 --- !u!50 &3816985285653792875
 Rigidbody2D:
   serializedVersion: 4
