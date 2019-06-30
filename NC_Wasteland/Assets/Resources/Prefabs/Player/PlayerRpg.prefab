@@ -152,7 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   jumpForce: 5
-  health: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -160,9 +159,9 @@ MonoBehaviour:
   healthText: {fileID: 3813095604868538259, guid: eb2c4f6611dee63499d7606cf994fb58,
     type: 3}
   audiosource: {fileID: 5086933874040968762}
-  jumpClip: {fileID: 8300000, guid: fae37a960d0093d4481c22e83aced674, type: 3}
-  fallClip: {fileID: 8300000, guid: 7bb425f8488fb534c8c9942974f4e051, type: 3}
-  hurtClip: {fileID: 8300000, guid: c0cf9a24ea099fe4184f0c65bed06892, type: 3}
+  jumpClip: {fileID: 8300000, guid: 5a41859c323e70347ba003f592264d16, type: 3}
+  fallClip: {fileID: 8300000, guid: 3d1fdcb7e0791a54591e5fc156a1d7b4, type: 3}
+  hurtClip: {fileID: 8300000, guid: 77e71f23572c3ca4ea8ae77e5d64095a, type: 3}
 --- !u!251 &3909113872830785615
 PlatformEffector2D:
   m_ObjectHideFlags: 0
