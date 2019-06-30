@@ -8,11 +8,15 @@ public class PlayerControl : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
-    public int health;
     public LayerMask groundLayer;
     public static bool facingRight;
     public Rigidbody2D myRigidbody;
     public TextMeshProUGUI healthText;
+
+    public AudioSource audiosource;
+    public AudioClip jumpClip;
+    public AudioClip fallClip;
+    public AudioClip hurtClip;
 
     private bool grounded;
     private Collider2D myCollider;
@@ -24,6 +28,7 @@ public class PlayerControl : MonoBehaviour
     private float stunTime = 0;
     private bool stun = false;
     private Enemy enemy;
+    private bool playonce=false;
 
 
     // Start is called before the first frame update
@@ -32,12 +37,13 @@ public class PlayerControl : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         myAnimator= GetComponent<Animator>();
+
+        healthText = GameObject.FindGameObjectWithTag("health").GetComponent<TextMeshProUGUI>();
         //PlayerSwitch.myPosition=new Vector2(transform.position.x, transform.position.y);
 
         // load globals
         this.jumpForce = Globals.Player_JumpForce;
         this.moveSpeed = Globals.Player_Velocity;
-        this.health = Globals.Player_Health;
     }
 
     // Update is called once per frame
@@ -68,6 +74,9 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
+
+                audiosource.clip = jumpClip;
+                audiosource.Play();
             }
         }
 
@@ -102,7 +111,14 @@ public class PlayerControl : MonoBehaviour
 
         if (transform.position.y < -20)
         {
-            SceneManager.LoadScene("TestScene");
+            //SceneManager.LoadScene("TestScene");
+            
+            if (!playonce)
+            {
+                audiosource.clip = fallClip;
+                audiosource.Play();
+            }
+            playonce = true;
         }
 
         hurtTime();
@@ -139,10 +155,13 @@ public class PlayerControl : MonoBehaviour
         if (hitTime >= 0.5)
         {
             stun = true;
-            health -= 30;
-            healthText.text =health.ToString();
+            Globals.Player_Health -= 30;
+            healthText.text = Globals.Player_Health.ToString();
             hit = false;
             hitTime = 0;
+
+            audiosource.clip = hurtClip;
+            audiosource.Play();
 
             if (enemy.transform.position.x>transform.position.x)
             {
@@ -154,7 +173,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
  
-        if (health < 0)
+        if (Globals.Player_Health < 0)
         {
             SceneManager.LoadScene("TestScene");
         }
