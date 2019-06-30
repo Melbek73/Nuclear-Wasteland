@@ -55,7 +55,9 @@ public class Bullet : MonoBehaviour
         explosion.transform.position = transform.position;
         Instantiate(explosion);
 
-        if (!isplayer&& Globals.PlayerisDeath == false)
+        string col = collision.collider.name;
+
+        if (!isplayer&& Globals.PlayerisDeath == false&&(col== "PlayerRpg(Clone)"|| col == "PlayerFist(Clone)"|| col == "PlayerFist"))
         {
             hit = true;
             if (hitTime >= 0.5)
