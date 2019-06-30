@@ -27,8 +27,6 @@ public class PlatformGenerator : MonoBehaviour
         activePlatform = new Platform(startPlatform);   // load startPlatform
         y_line = Globals.Platform_YAxis;                // y axis for platforms
 
-        enemy = (GameObject)Resources.Load("Prefabs/Enemy/ted", typeof(GameObject));
-
         enemyTed = (GameObject)Resources.Load("Prefabs/Enemy/Ted", typeof(GameObject));
         enemyDogl = (GameObject)Resources.Load("Prefabs/Enemy/Dogl", typeof(GameObject));
     }
