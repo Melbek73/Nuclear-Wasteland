@@ -19,8 +19,11 @@ public class PlayerControl : MonoBehaviour
     private Animator myAnimator;
     private int randomFist;
 
-    private float hitTime = 1;
+    private float hitTime = 0.5f;
     private bool hit = false;
+    private float stunTime = 0;
+    private bool stun = false;
+    private Enemy enemy;
 
 
     // Start is called before the first frame update
@@ -43,13 +46,13 @@ public class PlayerControl : MonoBehaviour
         grounded = Physics2D.IsTouchingLayers(myCollider, groundLayer);
         PlayerSwitch.myPosition = new Vector2(transform.position.x, transform.position.y);
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A)&&!stun)
         {
             myRigidbody.velocity = new Vector2(-moveSpeed, myRigidbody.velocity.y);
             myAnimator.Play("PlayerAnimation");
         }
 
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D)&&!stun)
         {
             myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
             myAnimator.Play("PlayerAnimation");
@@ -117,7 +120,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Enemy enemy = collision.collider.GetComponent<Enemy>();
+        enemy = collision.collider.GetComponent<Enemy>();
         if(enemy != null)
         {
             if(enemy.isPlayerJumpedOnEnemy())
@@ -133,12 +136,22 @@ public class PlayerControl : MonoBehaviour
     private void hurt()
     {
         hit = true;
-        if (hitTime >= 1)
+        if (hitTime >= 0.5)
         {
+            stun = true;
             health -= 30;
             healthText.text =health.ToString();
             hit = false;
             hitTime = 0;
+
+            if (enemy.transform.position.x>transform.position.x)
+            {
+                myRigidbody.velocity = new Vector2(-1, 3);
+            }
+            else
+            {
+                myRigidbody.velocity = new Vector2(1, 3);
+            }
         }
  
         if (health < 0)
@@ -153,5 +166,16 @@ public class PlayerControl : MonoBehaviour
         {
             hitTime += Time.deltaTime;
         }
+        if (stun)
+        {
+            stunTime += Time.deltaTime;
+        }
+
+        if (stunTime > 0.5f)
+        {
+            stunTime=0;
+            stun = false;
+        }
+
     }
 }

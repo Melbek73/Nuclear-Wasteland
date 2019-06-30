@@ -403,6 +403,11 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1935861187}
+    - target: {fileID: 5481719548154080752, guid: 135922fc716590548be166f3532acddb,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5481719548564672131, guid: 135922fc716590548be166f3532acddb,
         type: 3}
       propertyPath: m_Layer
@@ -493,10 +498,25 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5481719548154080758, guid: 135922fc716590548be166f3532acddb,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481719548154080758, guid: 135922fc716590548be166f3532acddb,
+        type: 3}
+      propertyPath: m_LinearDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5481719548154080753, guid: 135922fc716590548be166f3532acddb,
         type: 3}
       propertyPath: m_UsedByEffector
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481719548154080753, guid: 135922fc716590548be166f3532acddb,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 135922fc716590548be166f3532acddb, type: 3}
