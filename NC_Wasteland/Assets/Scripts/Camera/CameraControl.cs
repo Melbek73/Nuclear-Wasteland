@@ -7,9 +7,14 @@ public class CameraControl : MonoBehaviour
     public GameObject objectToFollow;
     public float interpolationSpeed = 2.0f;
     public float cameraSpeed = 1.0f;
+    public GameObject ui;
+    public AudioSource audiosource;
+    public AudioClip deathMusicClip;
 
     // For testing Camera follow the player
     public bool followPlayer = false;
+
+    private bool onlyonce = false;
 
     // Only for Debug
     float nextActionTime = 0.0f;
@@ -17,6 +22,12 @@ public class CameraControl : MonoBehaviour
     public Bounds OrthographicBounds
     {
         get { return CameraExtensions.OrthographicBounds(this.GetComponent<Camera>()); }
+    }
+
+    void Start()
+    {
+        audiosource = GetComponent<AudioSource>();
+        onlyonce = false;
     }
 
     void Update()
@@ -59,5 +70,18 @@ public class CameraControl : MonoBehaviour
             objectToFollow.transform.position = playerPos;
         }
 
+        if (Globals.PlayerisDeath == true)
+        {
+            if (!onlyonce)
+            {
+
+                audiosource.clip = deathMusicClip;
+                audiosource.Play();
+
+                Destroy(GameObject.Find("Canvas"));
+                Instantiate(ui);
+                onlyonce = true;
+            }
+        }
     }
 }

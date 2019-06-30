@@ -109,12 +109,17 @@ public class PlayerControl : MonoBehaviour
             Flip();
         }
 
-        if (transform.position.y < -20)
+        if (transform.position.y < -15)
         {
             //SceneManager.LoadScene("TestScene");
             
+
             if (!playonce)
             {
+                Globals.PlayerisDeath = true;
+                Globals.Player_Health = 0;
+                healthText.text = Globals.Player_Health.ToString();
+
                 audiosource.clip = fallClip;
                 audiosource.Play();
             }
@@ -175,7 +180,8 @@ public class PlayerControl : MonoBehaviour
  
         if (Globals.Player_Health < 0)
         {
-            SceneManager.LoadScene("TestScene");
+            //SceneManager.LoadScene("TestScene");
+            Globals.PlayerisDeath = true;
         }
     }
 

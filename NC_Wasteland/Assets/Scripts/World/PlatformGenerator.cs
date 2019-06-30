@@ -80,6 +80,7 @@ public class PlatformGenerator : MonoBehaviour
 
             score++;
             scoreText.text = "score:" + score;
+            Globals.PlayerScore = score;
         }
     }
 
