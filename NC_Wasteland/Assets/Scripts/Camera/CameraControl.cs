@@ -24,13 +24,7 @@ public class CameraControl : MonoBehaviour
         get { return CameraExtensions.OrthographicBounds(this.GetComponent<Camera>()); }
     }
 
-    void Start()
-    {
-        audiosource = GetComponent<AudioSource>();
-        onlyonce = false;
-    }
-
-    void Update()
+    private void findObjectToFollow()
     {
         if (GameObject.Find("PlayerRpg(Clone)"))
         {
@@ -48,20 +42,11 @@ public class CameraControl : MonoBehaviour
         {
             objectToFollow = GameObject.Find("PlayerFist");
         }
+    }
 
-        float interpolation = interpolationSpeed * Time.deltaTime;
-
-        Vector3 position = this.transform.position;
-        position.y = Mathf.Lerp(this.transform.position.y, objectToFollow.transform.position.y + 0.25f, interpolation);
-        position.x = (followPlayer) ? objectToFollow.transform.position.x
-                                    : Time.deltaTime * cameraSpeed + position.x;
-
-        this.transform.position = position;
-
-        // Debug
-        Globals.DebugAfterTime(ref nextActionTime, 2.0f, "Camera: OrthographicBounds Min.Y=" + OrthographicBounds.min.y + " Min.X=" + OrthographicBounds.min.x + " Max.Y=" + OrthographicBounds.max.y + " Max.X=" + OrthographicBounds.max.x);
-
-        if(OrthographicBounds.min.x > objectToFollow.transform.position.x)
+    private void checkPlayerInCamera()
+    {
+        if (OrthographicBounds.min.x > objectToFollow.transform.position.x)
         {
             Debug.Log("Spieler außerhalb der Kamera");
             Vector2 playerPos = objectToFollow.transform.position;
@@ -75,7 +60,16 @@ public class CameraControl : MonoBehaviour
             playerPos.x = OrthographicBounds.max.x;
             objectToFollow.transform.position = playerPos;
         }
+    }
 
+    void Start()
+    {
+        audiosource = GetComponent<AudioSource>();
+        onlyonce = false;
+    }
+
+    void Update()
+    {
         if (Globals.PlayerisDeath == true)
         {
             if (!onlyonce)
@@ -88,6 +82,23 @@ public class CameraControl : MonoBehaviour
                 Instantiate(ui);
                 onlyonce = true;
             }
+        } else
+        {
+            findObjectToFollow();
+
+            float interpolation = interpolationSpeed * Time.deltaTime;
+
+            Vector3 position = this.transform.position;
+            position.y = Mathf.Lerp(this.transform.position.y, objectToFollow.transform.position.y + 0.25f, interpolation);
+            position.x = (followPlayer) ? objectToFollow.transform.position.x
+                                        : Time.deltaTime * cameraSpeed + position.x;
+
+            this.transform.position = position;
+
+            // Debug
+            Globals.DebugAfterTime(ref nextActionTime, 2.0f, "Camera: OrthographicBounds Min.Y=" + OrthographicBounds.min.y + " Min.X=" + OrthographicBounds.min.x + " Max.Y=" + OrthographicBounds.max.y + " Max.X=" + OrthographicBounds.max.x);
+
+            checkPlayerInCamera();
         }
     }
 }

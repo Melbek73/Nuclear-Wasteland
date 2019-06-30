@@ -32,6 +32,9 @@ public static class Globals
     public static bool PlayerisDeath = false;
     public static int PlayerScore = 0;
 
+    // Hud
+    public static int Hud_Highscore = 0;
+
     // World
 
     // Platform

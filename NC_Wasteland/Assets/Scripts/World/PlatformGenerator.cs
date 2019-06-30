@@ -59,7 +59,7 @@ public class PlatformGenerator : MonoBehaviour
             }
 
             // Enemy on platform
-            float enemySpawnProbability = 25.0f; // percent of enemy spawn
+            float enemySpawnProbability = 88.0f; // percent of enemy spawn
             if(Random.Range(0, 100) < enemySpawnProbability)
             {
                 Instantiate(enemyRandom, transform.position + Vector3.up, enemyRandom.transform.rotation);
