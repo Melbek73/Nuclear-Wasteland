@@ -13,9 +13,6 @@ public class Enemy : MonoBehaviour
     Rigidbody2D tedBody;
     Transform tedTransform;
 
-    // Just for debug
-    float actionTime = 0;
-
     public LayerMask enemyMask;
     public GameObject explosion;
 
@@ -66,8 +63,8 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         enemyMove();
-        Vector3 lineCastPos = tedTransform.up * height + tedTransform.position - tedTransform.right * width / 6;
-        Debug.DrawLine(lineCastPos, lineCastPos + tedTransform.right * width * 0.45f * 2);
+        Vector3 lineCastPos = tedTransform.up * height + tedTransform.position - tedTransform.right * width + tedTransform.right * 0.1f;
+        Debug.DrawLine(lineCastPos, lineCastPos + tedTransform.right * width * 0.65f * 2);
     }
 
     public bool isPlayerJumpedOnEnemy()
