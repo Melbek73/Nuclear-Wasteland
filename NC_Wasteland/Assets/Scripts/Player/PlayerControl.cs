@@ -29,6 +29,8 @@ public class PlayerControl : MonoBehaviour
     private bool stun = false;
     private Enemy enemy;
     private bool playonce=false;
+    private bool airmove = false;
+    float x;
 
 
     // Start is called before the first frame update
@@ -52,18 +54,45 @@ public class PlayerControl : MonoBehaviour
         grounded = Physics2D.IsTouchingLayers(myCollider, groundLayer);
         PlayerSwitch.myPosition = new Vector2(transform.position.x, transform.position.y);
 
-        if (Input.GetKey(KeyCode.A)&&!stun)
+        if (!grounded && myRigidbody.velocity.x > 0 && Input.GetKey(KeyCode.A) && !stun)
+        {
+            myRigidbody.velocity = new Vector2(-moveSpeed / 1.5f, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
+            airmove = true;
+        }
+        else if (!grounded && myRigidbody.velocity.x < 0 && Input.GetKey(KeyCode.D) && !stun)
+        {
+            myRigidbody.velocity = new Vector2(moveSpeed / 1.5f, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
+            airmove = true;
+        }
+        else if (!grounded&&airmove == true&& Input.GetKey(KeyCode.A) && !stun)
+        {
+            myRigidbody.velocity = new Vector2(-moveSpeed / 1.5f, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
+        }
+        else if (!grounded && airmove == true && Input.GetKey(KeyCode.D) && !stun)
+        {
+            myRigidbody.velocity = new Vector2(moveSpeed / 1.5f, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
+        }
+        else if (!grounded)
+        {
+            x = myRigidbody.velocity.x;
+            x=x / 1.05f;
+            myRigidbody.velocity = new Vector2(x, myRigidbody.velocity.y);
+        }
+
+        if (Input.GetKey(KeyCode.A)&&!stun&&!airmove)
         {
             myRigidbody.velocity = new Vector2(-moveSpeed, myRigidbody.velocity.y);
             myAnimator.Play("PlayerAnimation");
         }
-
-        else if (Input.GetKey(KeyCode.D)&&!stun)
+        else if (Input.GetKey(KeyCode.D)&&!stun && !airmove)
         {
             myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
             myAnimator.Play("PlayerAnimation");
         }
-
         else
         {
             myAnimator.Play("PlayerStay");
@@ -71,6 +100,7 @@ public class PlayerControl : MonoBehaviour
 
         if (grounded == true)
         {
+            airmove = false;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
