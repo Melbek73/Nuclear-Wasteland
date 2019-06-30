@@ -83,9 +83,9 @@ public class Enemy : MonoBehaviour
         Debug.Log("Rocket: "+ weapon);
         if (player != null)
         {
-            
             if(isPlayerJumpedOnEnemy())
             {
+                Score.bonus(15);
                 hurt();
                 player.myRigidbody.velocity = new Vector2(player.myRigidbody.velocity.x, player.jumpForce);
                 Debug.Log("Enemy got jump damage by player");
@@ -94,12 +94,14 @@ public class Enemy : MonoBehaviour
 
         if(weapon == "Rocket(Clone)")
         {
+            Score.bonus(10);
             hurt();
             Debug.Log("Enemy got damage by rocket");
         }
 
         if ((weapon == "Player_RightHand"&& PlayerFistSound.isFist)|| (weapon == "Player_LeftHand" && PlayerFistSound.isFist))
         {
+            Score.bonus(20);
             hurt();
         }
     }
