@@ -6,13 +6,14 @@ public class Bullet : MonoBehaviour
 {
     public GameObject player;
     public GameObject explosion;
+    public float destroyDelay;
     private Collider2D myCollider;
     
     // Start is called before the first frame update
     void Start()
     {
         Physics2D.IgnoreLayerCollision(9, 11);
-        Destroy(gameObject, 2.0f);
+        Destroy(gameObject, destroyDelay);
     }
 
     // Update is called once per frame
