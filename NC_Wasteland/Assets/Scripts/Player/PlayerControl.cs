@@ -30,6 +30,7 @@ public class PlayerControl : MonoBehaviour
     private Enemy enemy;
     private bool playonce=false;
     private bool airmove = false;
+    float x;
 
 
     // Start is called before the first frame update
@@ -55,15 +56,31 @@ public class PlayerControl : MonoBehaviour
 
         if (!grounded && myRigidbody.velocity.x > 0 && Input.GetKey(KeyCode.A) && !stun)
         {
-            myRigidbody.velocity = new Vector2(-moveSpeed / 2, myRigidbody.velocity.y);
+            myRigidbody.velocity = new Vector2(-moveSpeed / 1.5f, myRigidbody.velocity.y);
             myAnimator.Play("PlayerAnimation");
             airmove = true;
         }
         else if (!grounded && myRigidbody.velocity.x < 0 && Input.GetKey(KeyCode.D) && !stun)
         {
-            myRigidbody.velocity = new Vector2(moveSpeed / 2, myRigidbody.velocity.y);
+            myRigidbody.velocity = new Vector2(moveSpeed / 1.5f, myRigidbody.velocity.y);
             myAnimator.Play("PlayerAnimation");
             airmove = true;
+        }
+        else if (!grounded&&airmove == true&& Input.GetKey(KeyCode.A) && !stun)
+        {
+            myRigidbody.velocity = new Vector2(-moveSpeed / 1.5f, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
+        }
+        else if (!grounded && airmove == true && Input.GetKey(KeyCode.D) && !stun)
+        {
+            myRigidbody.velocity = new Vector2(moveSpeed / 1.5f, myRigidbody.velocity.y);
+            myAnimator.Play("PlayerAnimation");
+        }
+        else if (!grounded)
+        {
+            x = myRigidbody.velocity.x;
+            x=x / 1.05f;
+            myRigidbody.velocity = new Vector2(x, myRigidbody.velocity.y);
         }
 
         if (Input.GetKey(KeyCode.A)&&!stun&&!airmove)
