@@ -145,3 +145,5 @@ MonoBehaviour:
   explosion: {fileID: 1094421576702244365, guid: a61d9cc015ecb1c4d889b6bf1da35f24,
     type: 3}
   destroyDelay: 2
+  healthText: {fileID: 0}
+  isplayer: 1
