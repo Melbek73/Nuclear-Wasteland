@@ -517,17 +517,17 @@ PrefabInstance:
         type: 3}
       propertyPath: fallClip
       value: 
-      objectReference: {fileID: 8300000, guid: 7bb425f8488fb534c8c9942974f4e051, type: 3}
+      objectReference: {fileID: 8300000, guid: 3d1fdcb7e0791a54591e5fc156a1d7b4, type: 3}
     - target: {fileID: 5481719548154080752, guid: 135922fc716590548be166f3532acddb,
         type: 3}
       propertyPath: jumpClip
       value: 
-      objectReference: {fileID: 8300000, guid: fae37a960d0093d4481c22e83aced674, type: 3}
+      objectReference: {fileID: 8300000, guid: 5a41859c323e70347ba003f592264d16, type: 3}
     - target: {fileID: 5481719548154080752, guid: 135922fc716590548be166f3532acddb,
         type: 3}
       propertyPath: hurtClip
       value: 
-      objectReference: {fileID: 8300000, guid: c0cf9a24ea099fe4184f0c65bed06892, type: 3}
+      objectReference: {fileID: 8300000, guid: 77e71f23572c3ca4ea8ae77e5d64095a, type: 3}
     - target: {fileID: 5481719548564672131, guid: 135922fc716590548be166f3532acddb,
         type: 3}
       propertyPath: m_Layer
