@@ -15,7 +15,10 @@ public class PlatformGenerator : MonoBehaviour
     private int amountOfPlatforms;
 
     // Enemy
-    GameObject enemy;
+    GameObject enemyTed;
+    GameObject enemyDogl;
+    private GameObject enemyRandom;
+    private int enemyRandomint;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,9 @@ public class PlatformGenerator : MonoBehaviour
         y_line = Globals.Platform_YAxis;                // y axis for platforms
 
         enemy = (GameObject)Resources.Load("Prefabs/Enemy/ted", typeof(GameObject));
+
+        enemyTed = (GameObject)Resources.Load("Prefabs/Enemy/Ted", typeof(GameObject));
+        enemyDogl = (GameObject)Resources.Load("Prefabs/Enemy/Dogl", typeof(GameObject));
     }
 
     // Update is called once per frame
@@ -44,11 +50,21 @@ public class PlatformGenerator : MonoBehaviour
             // init platform and add it to queue
             platformQueue.Enqueue(Instantiate(nextPlatform.prefabPlatform, transform.position, nextPlatform.Rotation));
 
+            enemyRandomint = Random.Range(0, 2);
+            if (enemyRandomint == 1)
+            {
+                enemyRandom = enemyTed;
+            }
+            else
+            {
+                enemyRandom = enemyDogl;
+            }
+
             // Enemy on platform
-            float enemySpawnProbability = 25.0f;//25.0f; // percent of enemy spawn
+            float enemySpawnProbability = 25.0f; // percent of enemy spawn
             if(Random.Range(0, 100) < enemySpawnProbability)
             {
-                Instantiate(enemy, transform.position + Vector3.up, enemy.transform.rotation);
+                Instantiate(enemyRandom, transform.position + Vector3.up, enemyRandom.transform.rotation);
             }
         }
 

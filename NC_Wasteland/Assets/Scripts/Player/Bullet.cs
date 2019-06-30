@@ -1,24 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     public GameObject player;
     public GameObject explosion;
+    public float destroyDelay;
+    public TextMeshProUGUI healthText;
+    public bool isplayer;
+
     private Collider2D myCollider;
-    
+    private bool onlyonce=false;
+    private float hitTime = 0.5f;
+    private bool hit = false;
+
     // Start is called before the first frame update
     void Start()
     {
         Physics2D.IgnoreLayerCollision(9, 11);
-        Destroy(gameObject, 2.0f);
+        Destroy(gameObject, destroyDelay);
+        if (Globals.PlayerisDeath == false)
+        {
+            healthText = GameObject.FindGameObjectWithTag("health").GetComponent<TextMeshProUGUI>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (hit)
+        {
+            hitTime += Time.deltaTime;
+        }
         /*if (GameObject.Find("PlayerRpg") || GameObject.Find("PlayerRpg(Clone)"))
         {
             player = GameObject.Find("PlayerRpg(Clone)");
@@ -39,5 +54,21 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
         explosion.transform.position = transform.position;
         Instantiate(explosion);
+
+        if (!isplayer&& Globals.PlayerisDeath == false)
+        {
+            hit = true;
+            if (hitTime >= 0.5)
+            {
+                Globals.Player_Health -= 40;
+                healthText.text = Globals.Player_Health.ToString();
+                hit = false;
+                hitTime = 0;
+                if (Globals.Player_Health <= 0)
+                {
+                    Globals.PlayerisDeath = true;
+                }
+            }
+        }
     }
 }

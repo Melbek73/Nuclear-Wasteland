@@ -34,13 +34,19 @@ public class CameraControl : MonoBehaviour
     {
         if (GameObject.Find("PlayerRpg(Clone)"))
         {
-            objectToFollow = GameObject.Find("PlayerRpg");
             objectToFollow = GameObject.Find("PlayerRpg(Clone)");
         }
-        else if( GameObject.Find("PlayerFist(Clone)"))
+        else if (GameObject.Find("PlayerRpg"))
+        {
+            objectToFollow = GameObject.Find("PlayerRpg");
+        }
+        else if (GameObject.Find("PlayerFist(Clone)"))
+        {
+            objectToFollow = GameObject.Find("PlayerFist(Clone)");
+        }
+        else if (GameObject.Find("PlayerFist"))
         {
             objectToFollow = GameObject.Find("PlayerFist");
-            objectToFollow = GameObject.Find("PlayerFist(Clone)");
         }
 
         float interpolation = interpolationSpeed * Time.deltaTime;
