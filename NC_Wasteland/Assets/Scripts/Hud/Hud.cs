@@ -89,10 +89,13 @@ public class Hud : MonoBehaviour
 
     private void changePlayerHP(int heartsLeft)
     {
-        for(int i = 4; i > 0; i--)
+        if (GameObject.Find("Canvas"))
         {
-            playerHealth[i - 1].overrideSprite = (heartsLeft - i >= 0) ? hp[0]
-                                                                       : hp[1];
+            for (int i = 4; i > 0; i--)
+            {
+                playerHealth[i - 1].overrideSprite = (heartsLeft - i >= 0) ? hp[0]
+                                                                           : hp[1];
+            }
         }
     }
 }
