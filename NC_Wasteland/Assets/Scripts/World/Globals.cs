@@ -30,7 +30,6 @@ public static class Globals
     public const float Player_Velocity = 3;
     public static int Player_Health = 100;
     public static bool PlayerisDeath = false;
-    public static int PlayerScore = 0;
 
     // Hud
     public static int Hud_Highscore = 0;

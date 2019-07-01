@@ -11,7 +11,6 @@ public class PlayerControl : MonoBehaviour
     public LayerMask groundLayer;
     public static bool facingRight;
     public Rigidbody2D myRigidbody;
-    public TextMeshProUGUI healthText;
 
     public AudioSource audiosource;
     public AudioClip jumpClip;
@@ -40,7 +39,6 @@ public class PlayerControl : MonoBehaviour
         myCollider = GetComponent<Collider2D>();
         myAnimator= GetComponent<Animator>();
 
-        healthText = GameObject.FindGameObjectWithTag("health").GetComponent<TextMeshProUGUI>();
         //PlayerSwitch.myPosition=new Vector2(transform.position.x, transform.position.y);
 
         // load globals
@@ -148,7 +146,6 @@ public class PlayerControl : MonoBehaviour
             {
                 Globals.PlayerisDeath = true;
                 Globals.Player_Health = 0;
-                healthText.text = Globals.Player_Health.ToString();
 
                 audiosource.clip = fallClip;
                 audiosource.Play();
@@ -190,8 +187,7 @@ public class PlayerControl : MonoBehaviour
         if (hitTime >= 0.5)
         {
             stun = true;
-            Globals.Player_Health -= 30;
-            healthText.text = Globals.Player_Health.ToString();
+            Globals.Player_Health -= 25;
             hit = false;
             hitTime = 0;
 
@@ -208,7 +204,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
  
-        if (Globals.Player_Health < 0)
+        if (Globals.Player_Health == 0)
         {
             //SceneManager.LoadScene("TestScene");
             Globals.PlayerisDeath = true;
