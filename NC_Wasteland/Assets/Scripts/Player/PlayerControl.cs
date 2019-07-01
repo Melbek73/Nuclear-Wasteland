@@ -204,7 +204,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
  
-        if (Globals.Player_Health == 0)
+        if (Globals.Player_Health <= 0)
         {
             //SceneManager.LoadScene("TestScene");
             Globals.PlayerisDeath = true;
