@@ -62,7 +62,7 @@ public class Bullet : MonoBehaviour
             hit = true;
             if (hitTime >= 0.5)
             {
-                Globals.Player_Health -= 40;
+                Globals.Player_Health -= 25;
                 healthText.text = Globals.Player_Health.ToString();
                 hit = false;
                 hitTime = 0;
