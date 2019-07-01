@@ -299,7 +299,7 @@ MonoBehaviour:
   ui: {fileID: 9153686379978501400, guid: 2964cb12517677447895a6bace5136e0, type: 3}
   audiosource: {fileID: 0}
   deathMusicClip: {fileID: 8300000, guid: d1ba11ebc2a468c4b99eb77696c5c48c, type: 3}
-  followPlayer: 1
+  followPlayer: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -370,7 +370,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5ae5da89815ce7c46bbc7e70b3082ec7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.68
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1648,16 +1648,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: health
       objectReference: {fileID: 0}
-    - target: {fileID: 2766123087932414728, guid: eb2c4f6611dee63499d7606cf994fb58,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2766123087932414728, guid: eb2c4f6611dee63499d7606cf994fb58,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2766123087932414734, guid: eb2c4f6611dee63499d7606cf994fb58,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1762,6 +1752,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766123087932414728, guid: eb2c4f6611dee63499d7606cf994fb58,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2766123087932414728, guid: eb2c4f6611dee63499d7606cf994fb58,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

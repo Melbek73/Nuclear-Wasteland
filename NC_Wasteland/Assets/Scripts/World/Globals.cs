@@ -32,7 +32,7 @@ public static class Globals
     public static bool PlayerisDeath = false;
 
     // Hud
-    public static int Hud_Highscore = 0;
+    public static int Hud_Highscore = 1530;
 
     // World
 

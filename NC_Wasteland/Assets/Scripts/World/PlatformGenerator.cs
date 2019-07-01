@@ -19,6 +19,7 @@ public class PlatformGenerator : MonoBehaviour
     GameObject enemyDogl;
     private GameObject enemyRandom;
     private int enemyRandomint;
+    private float percentTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +61,14 @@ public class PlatformGenerator : MonoBehaviour
 
             // Enemy on platform
             float enemySpawnProbability = 35.0f; // percent of enemy spawn
+            if((int)Score.lastScore > 500)
+            {
+                enemySpawnProbability = 65.0f;
+            } else if((int)Score.lastScore > 1000)
+            {
+                enemySpawnProbability = 100.0f;
+            }
+
             if(Random.Range(0, 100) < enemySpawnProbability)
             {
                 Instantiate(enemyRandom, transform.position + Vector3.up + Vector3.back, enemyRandom.transform.rotation);
